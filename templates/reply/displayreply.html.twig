@@ -3,5 +3,7 @@
 {% block title %}Accueil des réponses{% endblock %}
 
 {% block body %}
-
+{% for display in displays %}
+<p>{{ display }}</p>    
+{% endfor %}
 {% endblock %}

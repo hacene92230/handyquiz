@@ -4,8 +4,7 @@
 
 {% block body %}
     <h1>Accueil de tout les quiz</h1>
-<p>Voici la liste des différents quiz disponible</p>
-    <a href="{{ path('quiz_new') }}">Créer un nouveau quiz</a>
+<p>Voici l'ensemble des réponses des différents quiz</p>
     <table class="table">
         <thead>
             <tr>
@@ -22,8 +21,8 @@
 <td>{{ reponse.quiz.nom }}</td>
                 <td>{{ reponse.CreatedAt ? reponse.CreatedAt|date('d/m/Y') }}</td>
                 <td>
-                    <a href="{{ path('reply_display', {'id': reponse.id}) }}">Afficher</a>
-                                </td>
+                    <a href="{{ path('reply_show', {'id': reponse.id}) }}">Afficher</a>
+                                                    </td>
             </tr>
         {% else %}
             <tr>

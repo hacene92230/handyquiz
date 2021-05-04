@@ -10,27 +10,27 @@
 		{% for questions in questions.question %}
 			<h2>{{questions.texte}}</h2>
 			<div>
-				<input type="radio" id="question{{ loop.index }} reponse1" name="question{{ loop.index }} reponse1" value="question: {{ loop.index }} reponse: {{ questions.reponse1 }}">
-				<label for="question{{ loop.index }} reponse1">{{ questions.reponse1 }}</label>
+				<input type="radio" id="q{{ loop.index }} r1" name="q{{ loop.index }} r1" value="{{ questions.reponse1 }}">
+				<label for="q{{ loop.index }} r1">{{ questions.reponse1 }}</label>
 			</div>
 			<div>
-				<input type="radio" id="question{{ loop.index }} reponse2" name="question{{ loop.index }} reponse2" value="question: {{ loop.index }} reponse: {{ questions.reponse2 }}">
-				<label for="question{{ loop.index }} reponse2">{{ questions.reponse2 }}</label>
+				<input type="radio" id="q{{ loop.index }} r2" name="q{{ loop.index }} r2" value="{{ questions.reponse2 }}">
+				<label for="q{{ loop.index }} r2">{{ questions.reponse2 }}</label>
 			</div>
 			<div>
-				<input type="radio" id="question{{ loop.index }} reponse3" name="question{{ loop.index }} reponse3" value="question: {{ loop.index }} reponse: {{ questions.reponse3 }}">
-				<label for="question{{ loop.index }} reponse3">{{ questions.reponse3 }}</label>
+				<input type="radio" id="q{{ loop.index }} r3" name="q{{ loop.index }} r3" value="{{ questions.reponse3 }}">
+				<label for="q{{ loop.index }} reponse3">{{ questions.reponse3 }}</label>
 			</div>
 			{% if questions.reponse4 is not null%}
 			<div>
-				<input type="radio" id="question{{ loop.index }} reponse4" name="question{{ loop.index }} reponse4" value="question: {{ loop.index }} reponse: {{ questions.reponse4 }}">
-				<label for="question{{ loop.index }} reponse4">{{ questions.reponse4 }}</label>
+				<input type="radio" id="q{{ loop.index }} r4" name="q{{ loop.index }} r4" value="{{ questions.reponse4 }}">
+				<label for="q{{ loop.index }} r4">{{ questions.reponse4 }}</label>
 			</div>
 			{% endif %}
 {% if questions.reponse5 is not null%}
 			<div>
-				<input type="radio" id="question{{ loop.index }} reponse5" name="question{{ loop.index }} reponse5" value="question: {{ loop.index }} reponse: {{ questions.reponse5 }}">
-				<label for="question{{ loop.index }} reponse5">{{ questions.reponse5 }}</label>
+				<input type="radio" id="q{{ loop.index }} r5" name="q{{ loop.index }} r5" value="{{ questions.reponse5 }}">
+				<label for="q{{ loop.index }} r5">{{ questions.reponse5 }}</label>
 </div>
 			{% endif%}
 			{% endfor %}
