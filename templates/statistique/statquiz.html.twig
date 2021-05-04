@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques des quiz
+{% endblock %}
+
+{% block body %}
+	<h1>Statistiques des quiz</h1>
+	<p>Voici des statistiques concernant les quiz, elles sont plus spécifiques</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nombre de quiz créer</th>
+				<th>Nombre total de question</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ stats.nbquiz }}</td>
+				<td>{{ stats.nbquestion }}</td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}

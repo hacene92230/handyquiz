@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partager un quiz{% endblock %}
+
+{% block body %}
+    <h1>Partager un quiz</h1>
+        {{ include('quiz/_form.html.twig', {'button_label': 'Partager'}) }}
+    {% endblock %}
+
+{% block javascripts %}
+                {% endblock %}

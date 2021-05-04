@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil des questions{% endblock %}
+
+{% block body %}
+    <h1>Liste de nos différentes questions</h1>
+<p>Nous mettons présentement l'ensemble des questions proposées lors de la création d'un quiz</p>
+<p>Il vous est possible d'en créer de nouvelles, de les consulter et aussi de les éditer dirrectement</p>
+<a href="{{ path('question_new') }}">Créer une nouvelle question</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.texte }}</td>
+                <td>
+                    <a href="{{ path('question_show', {'id': question.id}) }}">Afficher</a>
+                    <a href="{{ path('question_edit', {'id': question.id}) }}">Éditer</a>
+    {{ include('question/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

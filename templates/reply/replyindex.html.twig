@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil des réponses{% endblock %}
+
+{% block body %}
+    <h1>Accueil de tout les quiz</h1>
+<p>Voici la liste des différents quiz disponible</p>
+    <a href="{{ path('quiz_new') }}">Créer un nouveau quiz</a>
+    <table class="table">
+        <thead>
+            <tr>
+                                <th>Email</th>
+                                <th>Quiz</th>
+                <th>Répondu le</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponse %}
+            <tr>
+                <td>{{ reponse.email }}</td>
+<td>{{ reponse.quiz.nom }}</td>
+                <td>{{ reponse.CreatedAt ? reponse.CreatedAt|date('d/m/Y') }}</td>
+                <td>
+                    <a href="{{ path('reply_display', {'id': reponse.id}) }}">Afficher</a>
+                                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil des quiz{% endblock %}
+
+{% block body %}
+    <h1>Accueil de tout les quiz</h1>
+<p>Voici la liste des différents quiz disponible</p>
+    <a href="{{ path('quiz_new') }}">Créer un nouveau quiz</a>
+    <table class="table">
+        <thead>
+            <tr>
+                                <th>Nom</th>
+                <th>Créé le</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizzes %}
+            <tr>
+                <td>{{ quiz.nom }}</td>
+                <td>{{ quiz.CreatedAt ? quiz.CreatedAt|date('d-m-Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('quiz_show', {'id': quiz.id}) }}">Afficher</a>
+                    <a href="{{ path('quiz_edit', {'id': quiz.id}) }}">Éditer</a>
+                    {{ include('quiz/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

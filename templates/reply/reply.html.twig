@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}répondre à un quiz
+{% endblock %}
+
+{% block body %}
+<form method="post">
+	<h1>Répondre à un quiz</h1>
+	{% for questions in quizquestion %}
+		{% for questions in questions.question %}
+			<h2>{{questions.texte}}</h2>
+			<div>
+				<input type="radio" id="question{{ loop.index }} reponse1" name="question{{ loop.index }} reponse1" value="question: {{ loop.index }} reponse: {{ questions.reponse1 }}">
+				<label for="question{{ loop.index }} reponse1">{{ questions.reponse1 }}</label>
+			</div>
+			<div>
+				<input type="radio" id="question{{ loop.index }} reponse2" name="question{{ loop.index }} reponse2" value="question: {{ loop.index }} reponse: {{ questions.reponse2 }}">
+				<label for="question{{ loop.index }} reponse2">{{ questions.reponse2 }}</label>
+			</div>
+			<div>
+				<input type="radio" id="question{{ loop.index }} reponse3" name="question{{ loop.index }} reponse3" value="question: {{ loop.index }} reponse: {{ questions.reponse3 }}">
+				<label for="question{{ loop.index }} reponse3">{{ questions.reponse3 }}</label>
+			</div>
+			{% if questions.reponse4 is not null%}
+			<div>
+				<input type="radio" id="question{{ loop.index }} reponse4" name="question{{ loop.index }} reponse4" value="question: {{ loop.index }} reponse: {{ questions.reponse4 }}">
+				<label for="question{{ loop.index }} reponse4">{{ questions.reponse4 }}</label>
+			</div>
+			{% endif %}
+{% if questions.reponse5 is not null%}
+			<div>
+				<input type="radio" id="question{{ loop.index }} reponse5" name="question{{ loop.index }} reponse5" value="question: {{ loop.index }} reponse: {{ questions.reponse5 }}">
+				<label for="question{{ loop.index }} reponse5">{{ questions.reponse5 }}</label>
+</div>
+			{% endif%}
+			{% endfor %}
+		{% endfor %}
+    <button class="btn">{{ button_label|default('Répondre') }}</button>
+</form>
+	{% endblock %}
+
+	{% block javascripts %}{% endblock %}

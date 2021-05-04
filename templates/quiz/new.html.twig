@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un nouveau Quiz{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau quiz</h1>
+    <p>Si les questions proposées dans la liste ne vous convienne pas il vous est possible d'en créer de nouvelles</p>
+    <a href="{{ path('question_new') }}">Créer une nouvelle question</a>
+
+    {{ include('quiz/_form.html.twig') }}
+
+{% endblock %}

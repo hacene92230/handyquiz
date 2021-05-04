@@ -1,0 +1,15 @@
+<nav>
+<a href="{{path('home')}}">HANDY-QUIZ</a>
+<a href="{{path('quiz_index')}}">Liste des quiz</a>
+<a href="{{path('quiz_new')}}">Créer un nouveau quiz</a>
+
+<a href="{{path('question_index')}}">Liste des questions</a>
+			<a href="{{ path('question_new')}}">Créer de nouvelles  questions</a>
+				{% for label, messages in app.flashes(['success', 'warning']) %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+				{% endfor %}
+                </nav>

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ quiz.nom }}
+{% endblock %}
+
+{% block body %}
+<h1>Quiz
+	{{ quiz.nom }}</h1>
+
+<table class="table">
+	<tbody>
+		<tr>
+			<th>Nombre de question</th>
+			<td>{{ quiz.question|length }}</td>
+		</tr>
+		{% for question in quiz.question %}
+			<tr>
+				<th>Question{{ loop.index }}</th>
+				<td>
+					<p><a href="{{ path('question_edit', {'id': question.id}) }}">{{ question.texte }}</a></p>
+</td>
+                <th>réponse</th>
+                <td>
+<p>réponse 1: {{ question.reponse1 ?? "la réponse 1 est vide" }}</p>
+<p>réponse 2: {{ question.reponse2 ?? "la réponse 2 est vide" }}</p>
+<p>réponse 3: {{ question.reponse3 ?? "la réponse 3 est vide" }}</p>
+<p>réponse 4: {{ question.reponse4 ?? "la réponse 4 est vide" }}</p>
+<p>réponse 5: {{ question.reponse5 ?? "la réponse 5 est vide"}}</p>
+
+
+                </td>
+			</tr>
+
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un quiz{% endblock %}
+
+{% block body %}
+    <h1>Modifier un  quiz</h1>
+
+    {{ include('quiz/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+{% endblock %}

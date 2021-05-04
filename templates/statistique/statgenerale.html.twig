@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques générales
+{% endblock %}
+
+{% block body %}
+	<h1>Statistiques générales</h1>
+	<p>Nous vous proposons un ensemble de statistiques qui vous permettrons d'avoir un aperçu sur l'activité des quiz proposer</p>
+	<p>Voici ci-dessous des statistiques dites générales, c'est-à-dir qu'elle ne touche pas un quiz en particulier.</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nombre de personne ayant répondu aux quiz</th>
+				<th>Total de personnes n'ayant pas répondu à un quiz</th>
+				<th>Nombre de quiz partager</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ stats.nbreponse }}</td>
+				<td>{{ stats.nbpareponse }}</td>
+				<td>{{ stats.nbpartage }}</td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}

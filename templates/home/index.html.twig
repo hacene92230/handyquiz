@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil {{ parent() }} {% endblock %}
+
+{% block body %}
+<h2>HandyQuiz</h2>
+<p>Bienvenu sur Handy-quiz</p>
+<p>Dès à présent vous pouvez partager et géré un ou plusieurs quiz.</p>
+<p><a href="{{path("quiz_share")}}">Partager un quiz</a></p>
+<p><a href="{{path("quiz_stathome")}}">Statistiques</a></p>
+<p><a href="{{path("reply_index")}}">Voir les réponses aux quiz</a></p>
+{% endblock %}
