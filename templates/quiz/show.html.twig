@@ -18,20 +18,15 @@
 			<tr>
 				<th>Question{{ loop.index }}</th>
 				<td>
-					<p><a href="{{ path('question_edit', {'id': question.id}) }}">{{ question.texte }}</a></p>
+					<p><a href="{{ path('question_edit', {'id': question.id}) }}">éditer {{ question.texte }}</a></p>
 </td>
-                <th>réponse</th>
+{% for reponse in question.reponses %}
+                <th>réponse{{ loop.index }}</th>
                 <td>
-<p>réponse 1: {{ question.reponse1 ?? "la réponse 1 est vide" }}</p>
-<p>réponse 2: {{ question.reponse2 ?? "la réponse 2 est vide" }}</p>
-<p>réponse 3: {{ question.reponse3 ?? "la réponse 3 est vide" }}</p>
-<p>réponse 4: {{ question.reponse4 ?? "la réponse 4 est vide" }}</p>
-<p>réponse 5: {{ question.reponse5 ?? "la réponse 5 est vide"}}</p>
-
-
+{{ reponse.texte }}
                 </td>
 			</tr>
-
+{% endfor %}
 {% endfor %}
 </tbody>
 </table>

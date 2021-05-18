@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Quizreply;
 use App\Repository\QuizRepository;
+use App\Repository\ReponseRepository;
 use App\Repository\QuizreplyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class ReplyController extends AbstractController
     /**
      * @Route("/{id}/{verif}", name="reply_repondre", methods={"GET", "POST"})
      */
-    public function reply(QuizRepository $quizRepository, QuizreplyRepository $quizreplyRepository, Request $request): Response
+    public function reply(ReponseRepository $reponserepository, QuizRepository $quizRepository, QuizreplyRepository $quizreplyRepository, Request $request): Response
     {
         $urlemail = $request->attributes->get('_route_params')['verif'];
         $urlquiz = $request->attributes->get('_route_params')['id'];
@@ -35,7 +36,9 @@ class ReplyController extends AbstractController
             }
             $quizreply->setValide(0);
             $quizreply->setCreatedAt(new \DateTime());
-            $quizreply->setReponse($_POST);
+            foreach ($_POST as $cle => $valeur) {
+                $quizreply->addChoix($reponserepository->findOneById($valeur));
+            }
             $em->flush();
             $this->addFlash('warning', "Vous venez de répondre à ce quiz, merci!");
             return $this->redirectToRoute('home');
@@ -59,11 +62,12 @@ class ReplyController extends AbstractController
     /**
      * @Route("/display-{id}", name="reply_show", methods={"GET"})
      */
-    public function replydisplay(QuizReply $quizreply, QuizRepository $quizrepository): Response
+    public function replydisplay(Quizreply $quizreply, quizreplyRepository $quizreplyrepository): Response
     {
-        $qrr = $quizrepository;
-        return $this->render('reply/displayreply.html.twig', [
-            'displays' => $quizreply->getReponse(),
-        ]);
+        if ($quizreply->getCreatedAt() != null) {
+            return $this->render('reply/displayreply.html.twig', [
+                'displays' => $quizreplyrepository->findOneById($quizreply->getId()),
+            ]);
+        }
     }
 }

@@ -16,6 +16,7 @@
         </thead>
         <tbody>
         {% for reponse in reponse %}
+        {% if reponse.CreatedAt is not null %}
             <tr>
                 <td>{{ reponse.email }}</td>
 <td>{{ reponse.quiz.nom }}</td>
@@ -24,6 +25,7 @@
                     <a href="{{ path('reply_show', {'id': reponse.id}) }}">Afficher</a>
                                                     </td>
             </tr>
+        {% endif %}
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>

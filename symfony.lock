@@ -545,6 +545,9 @@
     "symfony/yaml": {
         "version": "v5.2.5"
     },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.4.0"
+    },
     "tilleuls/url-signer-bundle": {
         "version": "1.0",
         "recipe": {
@@ -558,6 +561,9 @@
         ]
     },
     "twig/extra-bundle": {
+        "version": "v3.3.0"
+    },
+    "twig/string-extra": {
         "version": "v3.3.0"
     },
     "twig/twig": {

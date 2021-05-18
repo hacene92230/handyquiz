@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil des réponses{% endblock %}
+{% block title %}Réponses de {{ displays.email }} pour le quiz {{ displays.quiz.nom }}{% endblock %}
 
 {% block body %}
-{% for display in displays %}
-<p>{{ display }}</p>    
+{% for question in displays.quiz.question %}
+<h2>question{{ loop.index }} : {{ question.texte }}</h2>
+{% for reponse in displays.choix %}
+{% for choix in reponse.questions %}
+{% if choix.id == question.id %}
+<p>{{ reponse.texte }}</p>
+{% endif %}
+{% endfor %}
+{% endfor %}
 {% endfor %}
 {% endblock %}

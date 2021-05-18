@@ -1,4 +1,8 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+{% if app.request.attributes.get('_route') != "question_edit" %}
+<p><a href="{{ path("question_new", {idreponse: app.request.get('idreponse')+1}) }}">Ajouter une réponse</a></p>
+<p><a href="{{ path("question_new", {idreponse: app.request.get('idreponse')-1}) }}">Retirer une réponse</a></p>
+    {% endif %}
     <button class="btn">{{ button_label|default('Créer la question') }}</button>
 {{ form_end(form) }}

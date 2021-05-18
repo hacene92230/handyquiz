@@ -10,29 +10,11 @@
 		{% for questions in questions.question %}
 			<h2>{{questions.texte}}</h2>
 			<div>
-				<input type="radio" id="q{{ loop.index }} r1" name="q{{ loop.index }} r1" value="{{ questions.reponse1 }}">
-				<label for="q{{ loop.index }} r1">{{ questions.reponse1 }}</label>
+{% for reponse in questions.reponses %}
+<p><input type="checkbox" id="q {{ questions.id }} r {{ reponse.id }}" name="q {{ questions.id }} r {{ reponse.id }}" value="{{ reponse.id }}"></p>
+<label for="q {{ questions.id }} r {{ reponse.id }}">{{ reponse.texte }}</label>
+{% endfor %}
 			</div>
-			<div>
-				<input type="radio" id="q{{ loop.index }} r2" name="q{{ loop.index }} r2" value="{{ questions.reponse2 }}">
-				<label for="q{{ loop.index }} r2">{{ questions.reponse2 }}</label>
-			</div>
-			<div>
-				<input type="radio" id="q{{ loop.index }} r3" name="q{{ loop.index }} r3" value="{{ questions.reponse3 }}">
-				<label for="q{{ loop.index }} reponse3">{{ questions.reponse3 }}</label>
-			</div>
-			{% if questions.reponse4 is not null%}
-			<div>
-				<input type="radio" id="q{{ loop.index }} r4" name="q{{ loop.index }} r4" value="{{ questions.reponse4 }}">
-				<label for="q{{ loop.index }} r4">{{ questions.reponse4 }}</label>
-			</div>
-			{% endif %}
-{% if questions.reponse5 is not null%}
-			<div>
-				<input type="radio" id="q{{ loop.index }} r5" name="q{{ loop.index }} r5" value="{{ questions.reponse5 }}">
-				<label for="q{{ loop.index }} r5">{{ questions.reponse5 }}</label>
-</div>
-			{% endif%}
 			{% endfor %}
 		{% endfor %}
     <button class="btn">{{ button_label|default('Répondre') }}</button>

@@ -8,33 +8,19 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ question.id }}</td>
-            </tr>
-            <tr>
                 <th>Texte</th>
                 <td>{{ question.texte }}</td>
             </tr>
             <tr>
-                <th>Reponse1</th>
-                <td>{{ question.reponse1 }}</td>
-            </tr>
-            <tr>
-                <th>Reponse2</th>
-                <td>{{ question.reponse2 }}</td>
-            </tr>
-            <tr>
-                <th>Reponse3</th>
-                <td>{{ question.reponse3 }}</td>
-            </tr>
-            <tr>
-                <th>Reponse4</th>
-                <td>{{ question.reponse4 }}</td>
-            </tr>
-            <tr>
-                <th>Reponse5</th>
-                <td>{{ question.reponse5 }}</td>
-            </tr>
-        </tbody>
+{% for reponse in question.reponses %}
+                <th>réponse{{ loop.index }}</th>
+                <td>
+{{ reponse.texte }}
+                </td>
+			</tr>
+{% endfor %}
+
+        
+            </body>
     </table>
 {% endblock %}

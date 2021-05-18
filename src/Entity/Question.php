@@ -25,38 +25,19 @@ class Question
     private $texte;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $reponse1;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $reponse2;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $reponse3;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $reponse4;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $reponse5;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Quiz::class, mappedBy="question")
      */
     private $quizzes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Reponse::class, inversedBy="questions", cascade={"persist", "remove"})
+     */
+    private $reponses;
+
     public function __construct()
     {
         $this->quizzes = new ArrayCollection();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -72,66 +53,6 @@ class Question
     public function setTexte(string $texte): self
     {
         $this->texte = $texte;
-
-        return $this;
-    }
-
-    public function getReponse1(): ?string
-    {
-        return $this->reponse1;
-    }
-
-    public function setReponse1(string $reponse1): self
-    {
-        $this->reponse1 = $reponse1;
-
-        return $this;
-    }
-
-    public function getReponse2(): ?string
-    {
-        return $this->reponse2;
-    }
-
-    public function setReponse2(?string $reponse2): self
-    {
-        $this->reponse2 = $reponse2;
-
-        return $this;
-    }
-
-    public function getReponse3(): ?string
-    {
-        return $this->reponse3;
-    }
-
-    public function setReponse3(?string $reponse3): self
-    {
-        $this->reponse3 = $reponse3;
-
-        return $this;
-    }
-
-    public function getReponse4(): ?string
-    {
-        return $this->reponse4;
-    }
-
-    public function setReponse4(?string $reponse4): self
-    {
-        $this->reponse4 = $reponse4;
-
-        return $this;
-    }
-
-    public function getReponse5(): ?string
-    {
-        return $this->reponse5;
-    }
-
-    public function setReponse5(?string $reponse5): self
-    {
-        $this->reponse5 = $reponse5;
 
         return $this;
     }
@@ -159,6 +80,30 @@ class Question
         if ($this->quizzes->removeElement($quiz)) {
             $quiz->removeQuestion($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|reponse[]
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(reponse $reponse): self
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses[] = $reponse;
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(reponse $reponse): self
+    {
+        $this->reponses->removeElement($reponse);
 
         return $this;
     }
