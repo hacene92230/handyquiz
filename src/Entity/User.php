@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Il existe déjà un compte avec cet e-mail, si vous avez déjà créer un compte sans avoir reçu le lien d'activation veuillez attendre une petite heure")
  */
 class User implements UserInterface
 {

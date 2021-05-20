@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\QuizRepository;
+use App\Repository\ReponseRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\QuizreplyRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,11 +18,12 @@ class StatistiqueController extends AbstractController
      * @Route("/statistique-quiz", name="quiz_stat")
      * @Route("/statistique-accueil", name="quiz_stathome")
      **/
-    public function statistique(QuestionRepository $questionrepository, QuizRepository $quizrepository, QuizreplyRepository $quizreplyRepository, Request $request): Response
+    public function statistique(ReponseRepository $reponserepository, QuestionRepository $questionrepository, QuizRepository $quizrepository, QuizreplyRepository $quizreplyRepository, Request $request): Response
     {
-        if ($request->attributes->get('_route') == "quiz_general") {
-            $qrr = $quizreplyRepository;
-            $stat = [
+                    $qrr = $quizreplyRepository;
+            $rr = $reponserepository;
+            if ($request->attributes->get('_route') == "quiz_general") {
+          $stat = [
                 "nbreponse" => count($qrr->findByValide(0)),
                 "nbpareponse" => count($qrr->findByValide(1)),
                 "nbpartage" => count($qrr->findAll()),
@@ -34,7 +36,8 @@ class StatistiqueController extends AbstractController
             $q = $questionrepository;
             $stat = [
                 "nbquiz" => count($qr->findAll()),
-                "nbquestion" => count($q->findAll())
+                "nbquestion" => count($q->findAll()),
+"nbreponse_question" => count($rr->findAll())/count($q->findAll())
             ];
             return $this->render('statistique/statquiz.html.twig', [
                 'stats' => $stat,
