@@ -11,10 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/question')]
+/**
+ * @Route("/question")
+ */
 class QuestionController extends AbstractController
 {
-    #[Route('/', name: 'question_index', methods: ['GET'])]
+    /**
+     * @Route("/index", name="question_index", methods={"GET"})
+     */
     public function index(QuestionRepository $questionRepository): Response
     {
         return $this->render('question/index.html.twig', [
@@ -22,7 +26,9 @@ class QuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/new/{idreponse}', name: 'question_new', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/new/{idreponse}", methods={"GET", "POST"}, name="question_new")
+     */
     public function new(int $idreponse = 3 ?? $request->attributes->get('_route_params')['idreponse'], Request $request): Response
     {
         if ($idreponse <= 0) {
@@ -51,7 +57,9 @@ class QuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'question_show', methods: ['GET'])]
+    /**
+     * @Route("/afficher/{id}", methods={"GET"}, name="question_show")
+     */
     public function show(Question $question): Response
     {
         return $this->render('question/show.html.twig', [
@@ -59,7 +67,9 @@ class QuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'question_edit', methods: ['GET', 'POST'])]
+    /**
+     * @Route("/editer/{id}", methods={"GET"}, name="question_edit")
+     */
     public function edit(Request $request, Question $question): Response
     {
         $form = $this->createForm(QuestionType::class, $question);
@@ -77,7 +87,9 @@ class QuestionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'question_delete', methods: ['POST'])]
+    /**
+     * @Route("/supprimer/{id}", methods={"POST"}, name="question_delete")
+     */
     public function delete(Request $request, Question $question): Response
     {
         if ($this->isCsrfTokenValid('delete' . $question->getId(), $request->request->get('_token'))) {

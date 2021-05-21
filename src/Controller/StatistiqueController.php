@@ -11,12 +11,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+    /**
+     * @Route("/statistique")
+     */
 class StatistiqueController extends AbstractController
 {
     /**
-     * @Route("/statistique-general", name="quiz_general")
-     * @Route("/statistique-quiz", name="quiz_stat")
-     * @Route("/statistique-accueil", name="quiz_stathome")
+     * @Route("/general", name="quiz_general")
+     * @Route("/quiz", name="quiz_stat")
+     * @Route("/accueil", name="quiz_stathome")
      **/
     public function statistique(ReponseRepository $reponserepository, QuestionRepository $questionrepository, QuizRepository $quizrepository, QuizreplyRepository $quizreplyRepository, Request $request): Response
     {

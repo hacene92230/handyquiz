@@ -48,7 +48,6 @@ class ReplyController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/reply-index", name="reply_index")
      */

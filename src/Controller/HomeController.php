@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\ContactTypes;
+use App\Repository\UserRepository;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,9 +15,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'home')]
-    public function index(): Response
+    /**
+     * @Route("/accueil", name="home")
+     */
+    public function index(UserRepository $userrepository, Request $request): Response
     {
+        if (empty($userrepository->findAll())) {
+            $this->addFlash('warning', 'Il est préférable d\'initialiser la première venue sur le site');
+            return $this->redirectToRoute('app_register');
+        }
+        if ($this->getUser() != null and $this->getUser()->isVerified() == false) {
+            return $this->redirectToRoute('app_logout');
+            
+        }
         return $this->render('home/index.html.twig', []);
     }
 

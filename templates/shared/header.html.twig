@@ -1,15 +1,14 @@
 <nav>
-<a href="{{path('home')}}">HANDY-QUIZ</a>
+<p><a href="{{path('home')}}">HANDY-QUIZ</a></p>
 {% if is_granted('ROLE_USER') %}
-<a href="{{path('app_logout')}}">Déconnexion</a>
-<a href="{{path('quiz_index')}}">Liste des quiz</a>
-<a href="{{path('quiz_new')}}">Créer un nouveau quiz</a>
-<a href="{{path('question_index')}}">Liste des questions</a>
-			<a href="{{ path('question_new')}}">Créer de nouvelles  questions</a>
+<p><a href="{{path('app_logout')}}">Déconnexion</a></p>
+<p><a href="{{path('quiz_index')}}">Liste des quiz</a></p>
+<p><a href="{{path('quiz_new')}}">Créer un nouveau quiz</a></p>
+<p><a href="{{path('question_index')}}">Liste des questions</a></p>
+			<p><a href="{{ path('question_new')}}">Créer de nouvelles  questions</a></p>
                                 {% else %}
-			<a href="{{ path('app_login')}}">Accédé à mon espace</a>
-
-<a href="{{ path('app_register')}}">Demandez à nous rejoindre</a>
+		<p><a href="{{ path('app_login')}}">Accédé à mon espace</a></p>
+<p><a href="{{ path('app_register')}}">Demandez à nous rejoindre</a></p>
 {% endif %}
                 				{% for label, messages in app.flashes(['success', 'warning']) %}
     {% for message in messages %}
