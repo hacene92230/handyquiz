@@ -1,6 +1,8 @@
 <nav>
 <p><a href="{{path('home')}}">HANDY-QUIZ</a></p>
 {% if is_granted('ROLE_USER') %}
+Bienvenu {{app.user.firstname }} ({{ app.user.roles[0]|striptags|slice(5)|raw }})
+					<p><a href="{{ path('user_edit', {'id': app.user.id}) }}">Modifier mon profil</a></p>
 <p><a href="{{path('app_logout')}}">Déconnexion</a></p>
 <p><a href="{{path('quiz_index')}}">Liste des quiz</a></p>
 <p><a href="{{path('quiz_new')}}">Créer un nouveau quiz</a></p>
@@ -9,6 +11,7 @@
                                 {% else %}
 		<p><a href="{{ path('app_login')}}">Accédé à mon espace</a></p>
 <p><a href="{{ path('app_register')}}">Demandez à nous rejoindre</a></p>
+<p><a href="{{ path("app_forgot_password_request") }}">J'ai oublier mon mot de passe</a></p>
 {% endif %}
                 				{% for label, messages in app.flashes(['success', 'warning']) %}
     {% for message in messages %}

@@ -27,11 +27,11 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/new/{idreponse}", methods={"GET", "POST"}, name="question_new")
+     * @Route("/new/{idreponse}/{idimage}", methods={"GET", "POST"}, name="question_new")
      */
-    public function new(int $idreponse = 3 ?? $request->attributes->get('_route_params')['idreponse'], Request $request): Response
+    public function new(int $idreponse = 0 ?? $request->attributes->get('_route_params')['idreponse'], int $idimage = 0 ?? $request->attributes->get('_route_params')['idimage'], Request $request): Response
     {
-        if ($idreponse <= 0) {
+        if ($idreponse < 0 or $idimage < 0) {
             return $this->redirectToRoute('question_new');
         }
         $question = new Question();

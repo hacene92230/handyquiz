@@ -1,8 +1,11 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
 {% if app.request.attributes.get('_route') != "question_edit" %}
-<p><a href="{{ path("question_new", {idreponse: app.request.get('idreponse')+1}) }}">Ajouter une réponse</a></p>
+<p><a href="{{ path("question_new", {idreponse: app.request.get('idreponse')+1, idimage: app.request.get('idimage')}) }}">Ajouter un texte réponse</a></p>
+<p><a href="{{ path("question_new", {idreponse: app.request.get('idreponse'), idimage: app.request.get('idimage')+1}) }}">Ajouter une immage réponse</a></p>
+{% if app.request.attributes.get('idreponse') >0 %}
 <p><a href="{{ path("question_new", {idreponse: app.request.get('idreponse')-1}) }}">Retirer une réponse</a></p>
+    {% endif %}
     {% endif %}
     <button class="btn">{{ button_label|default('Créer la question') }}</button>
 {{ form_end(form) }}
